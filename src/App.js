@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
+import UsersContext from "./contexts/users.context";
 
 function App() {
+  const { total_page, isLoading, items } = useContext(UsersContext);
+
+  const getUsers = () => {
+    return items.map(user => {
+      return <li key={user.id}><Link to={ `/users/${user.id}` }>
+        <span><img src={user.avatar} alt=""/></span>
+        <p>{ user.email }</p>
+      </Link></li>
+    });
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -10,14 +23,15 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p> Total page: { total_page }</p>
+
+        <ul>
+          {
+            isLoading ?  getUsers() : 'Spinner'
+          }
+        </ul>
+
+
       </header>
     </div>
   );

@@ -5,8 +5,8 @@ const UsersContext = createContext();
 const { Provider, Consumer } = UsersContext;
 
 
-const UserProvider = ({ children }) => {
-    const { users, setUsersList} = useState({ isLoading: false, error: false, items: [], current_page: 1, total_page: 0 });
+const UsersProvider = ({ children }) => {
+    const [users, setUsersList] = useState({ isLoading: false, error: false, items: [], current_page: 1, total_page: 0 });
 
     useEffect(() => {
        getUsers()
@@ -23,4 +23,4 @@ const UserProvider = ({ children }) => {
 };
 
 export default UsersContext;
-export { UserProvider, Consumer as UserConsumer };
+export { UsersProvider, Consumer as SingleUserConsumer };

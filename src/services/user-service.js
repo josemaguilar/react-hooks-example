@@ -6,6 +6,14 @@ const getUsers = () => {
             .then(res => resolve(res.json()), reject)
             .catch(err => reject(err.json()));
     });
-    };
+};
 
-export { getUsers };
+const getSingleUser = ({ id }) => {
+    return new Promise((resolve, reject) => {
+        fetch(`${BASE_URL_API}/${id}`)
+            .then(res => resolve(res.json()), reject)
+            .catch(err => reject(err.json()))
+    })
+};
+
+export { getUsers, getSingleUser };
