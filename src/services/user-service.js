@@ -8,7 +8,7 @@ const getUsers = () => {
     });
 };
 
-const getSingleUser = ({ id }) => {
+const getSingleUser = (id) => {
     return new Promise((resolve, reject) => {
         fetch(`${BASE_URL_API}/${id}`)
             .then(res => resolve(res.json()), reject)
